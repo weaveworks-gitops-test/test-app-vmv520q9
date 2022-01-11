@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: my-nginx-w5iedc
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-w5iedc
+  namespace: my-nginx-w5iedc
+  labels:
+    name: nginx-w5iedc
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: nginx-w5iedc
+  template:
+    metadata:
+      namespace: my-nginx-w5iedc
+      labels:
+        name: nginx-w5iedc
+    spec:
+      containers:
+      - name: nginx-w5iedc
+        image: nginx
+        ports:
+        - containerPort: 80
+
